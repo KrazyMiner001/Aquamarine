@@ -1,11 +1,11 @@
 {
-	"required": true,
-	"package": "tech.krazyminer001.aquamarine.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "tech.krazyminer001.aquamarine.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockStateReplaceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
