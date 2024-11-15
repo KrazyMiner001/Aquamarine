@@ -24,6 +24,10 @@ public class ConfigurableFluidStack extends ConfigurableStack<Fluid, FluidVarian
         this.capacity = capacity;
     }
 
+    public FluidStack toStack() {
+        return new FluidStack(resource, amount);
+    }
+
     @Override
     protected FluidVariant getBlank() {
         return FluidVariant.blank();

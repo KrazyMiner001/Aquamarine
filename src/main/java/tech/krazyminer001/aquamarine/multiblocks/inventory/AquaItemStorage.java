@@ -55,13 +55,12 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
             return stack;
         }
 
-        public ItemStack setStack(int slot, ItemStack stack) {
+        public void setStack(int slot, ItemStack stack) {
             ConfigurableStack<Item, ItemVariant> stackItem = storage.get(slot);
             ItemVariant resource = ItemVariant.of(stack);
 
             stackItem.setResource(resource);
             stackItem.setAmount(stack.getCount());
-            return stack;
         }
 
         public ItemStack extractStack(int slot, int amount, boolean simulate) {
@@ -81,7 +80,6 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
 
         public ItemStack removeStack(int slot) {
             try (Transaction tx = Transaction.openOuter()) {
-                ItemVariant resource = storage.get(slot).getResource();
                 ConfigurableStack<Item, ItemVariant> stackItem = storage.get(slot);
                 ItemStack removedStack = stackItem.getResource().toStack((int) stackItem.getAmount());
 
