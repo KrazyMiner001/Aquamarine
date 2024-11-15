@@ -11,10 +11,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import tech.krazyminer001.aquamarine.Aquamarine;
 import tech.krazyminer001.aquamarine.blocks.FastBlockEntity;
-import tech.krazyminer001.aquamarine.multiblocks.HatchBlockEntity;
-import tech.krazyminer001.aquamarine.multiblocks.ShapeMatcher;
-import tech.krazyminer001.aquamarine.multiblocks.ShapeTemplate;
-import tech.krazyminer001.aquamarine.multiblocks.SimpleMember;
+import tech.krazyminer001.aquamarine.multiblocks.*;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.AquaInventory;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.MultiblockInventory;
@@ -37,7 +34,7 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
     );
 
     private static final ShapeTemplate template = new ShapeTemplate.Builder()
-            .add(0, 1,  0, SimpleMember.ofBlock(() -> Blocks.GLASS))
+            .add(0, 1,  0, SimpleMember.ofBlock(() -> Blocks.GLASS), new HatchFlags.Builder().with(HatchType.ITEM_INPUT).build())
             .build();
 
     private ShapeMatcher matcher = null;
@@ -58,6 +55,10 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
         }
 
         Aquamarine.LOGGER.info("Multiblock does{} match", matcher.isMatchSuccessful() ? "" : "n't");
+
+        Aquamarine.LOGGER.info("Multiblock has {} hatches", hatches.size());
+        if (!multiblockInventory.getItemInputs().isEmpty())
+            Aquamarine.LOGGER.info("Multiblock has {} {}s", multiblockInventory.getItemInputs().getFirst().getAmount(), multiblockInventory.getItemInputs().getFirst().getResource().getItem());
     }
 
     public final void link() {

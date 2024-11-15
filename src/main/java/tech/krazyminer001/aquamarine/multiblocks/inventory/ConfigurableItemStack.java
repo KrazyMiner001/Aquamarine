@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.item.Item;
 
 public class ConfigurableItemStack extends ConfigurableStack<Item, ItemVariant> {
-    private long capacity;
+    private long capacity = 64;
 
     public ConfigurableItemStack(ItemVariant resource, long amount) {
         super(resource, amount);

@@ -41,6 +41,10 @@ public abstract class ConfigurableStack<T, K extends TransferVariant<T>> extends
         return resource;
     }
 
+    public void setResource(K resource) {
+        this.resource = resource;
+    }
+
     public long getAmount() {
         return amount;
     }

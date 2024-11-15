@@ -31,7 +31,7 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
 
             ConfigurableStack<Item, ItemVariant> stackItem = storage.get(slot);
 
-            ItemVariant resource = stackItem.getResource();
+            ItemVariant resource = ItemVariant.of(stack);
 
             boolean canInsert;
 
@@ -46,6 +46,7 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
 
                 if (inserted > 0 && !simulate) {
                     stackItem.add(inserted);
+                    stackItem.setResource(resource);
                 }
 
                 return inserted == stack.getCount() ? ItemStack.EMPTY : resource.toStack((int) (stack.getCount() - inserted));

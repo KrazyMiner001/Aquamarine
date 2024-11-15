@@ -25,14 +25,15 @@ public class ExampleBlocks {
             ExampleHatchBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK), true);
 
     public static final BlockEntityType<ExampleMultiblockBlockEntity> EXAMPLE_MULTIBLOCK_BLOCK_ENTITY_BLOCK_ENTITY_TYPE = register("example_block_entity",
-            FabricBlockEntityTypeBuilder.create(ExampleMultiblockBlockEntity::new, EXAMPLE_HATCH_BLOCK).build()
+            FabricBlockEntityTypeBuilder.create(ExampleMultiblockBlockEntity::new, EXAMPLE_MULTIBLOCK).build()
     );
 
     public static final BlockEntityType<ExampleHatchBlockEntity> HATCH_BLOCK_ENTITY = register("example_hatch",
-            FabricBlockEntityTypeBuilder.create(ExampleHatchBlockEntity::new, EXAMPLE_MULTIBLOCK).build());
+            FabricBlockEntityTypeBuilder.create(ExampleHatchBlockEntity::new, EXAMPLE_HATCH_BLOCK).build());
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType<T> type) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Aquamarine.MOD_ID, id), type);
+        BlockEntityType<T> blockEntity = Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Aquamarine.MOD_ID, id), type);
+        return blockEntity;
     }
 
     private static <T extends Block> T register(String name, Function<AbstractBlock.Settings, T> blockFunction, AbstractBlock.Settings blockSettings, boolean registerItem) {
