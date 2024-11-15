@@ -6,14 +6,36 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class ConfigurableStack<T, K extends TransferVariant<T>> extends SnapshotParticipant<ResourceAmount<K>> {
-    protected K resource;
-    protected long amount;
+    protected K resource = getBlank();
+    protected long amount = 0;
+    private final Map<ChangeListener, Object> listeners = new HashMap<>();
+
+    public ConfigurableStack() {
+
+    }
 
     public ConfigurableStack(K resource, long amount) {
         this.resource = resource;
         this.amount = amount;
     }
+
+    protected void notifyListeners() {
+        ChangeListener.notify(listeners);
+    }
+
+    public void addListener(ChangeListener listener, Object token) {
+        listeners.put(listener, token);
+    }
+
+    public void removeListener(ChangeListener listener) {
+        listeners.remove(listener);
+    }
+
+    protected abstract K getBlank();
 
     public K getResource() {
         return resource;

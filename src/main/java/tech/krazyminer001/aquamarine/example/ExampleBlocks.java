@@ -18,12 +18,18 @@ import tech.krazyminer001.aquamarine.Aquamarine;
 import java.util.function.Function;
 
 public class ExampleBlocks {
-    public static final Block EXAMPLE_MULTIBLOCK = register("example_multiblock",
+    public static final ExampleMultiblock EXAMPLE_MULTIBLOCK = register("example_multiblock",
             ExampleMultiblock::new, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK), true);
 
+    public static final ExampleHatchBlock EXAMPLE_HATCH_BLOCK = register("example_hatch_block",
+            ExampleHatchBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK), true);
+
     public static final BlockEntityType<ExampleMultiblockBlockEntity> EXAMPLE_MULTIBLOCK_BLOCK_ENTITY_BLOCK_ENTITY_TYPE = register("example_block_entity",
-            FabricBlockEntityTypeBuilder.create(ExampleMultiblockBlockEntity::new, EXAMPLE_MULTIBLOCK).build()
+            FabricBlockEntityTypeBuilder.create(ExampleMultiblockBlockEntity::new, EXAMPLE_HATCH_BLOCK).build()
     );
+
+    public static final BlockEntityType<ExampleHatchBlockEntity> HATCH_BLOCK_ENTITY = register("example_hatch",
+            FabricBlockEntityTypeBuilder.create(ExampleHatchBlockEntity::new, EXAMPLE_MULTIBLOCK).build());
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType<T> type) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Aquamarine.MOD_ID, id), type);

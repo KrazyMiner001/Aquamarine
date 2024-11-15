@@ -5,9 +5,9 @@ import net.minecraft.fluid.Fluid;
 
 import java.util.List;
 
-public class AquaFluidStorage extends AquaStorage<Fluid, FluidVariant, ConfigurableStack<Fluid, FluidVariant>>{
+public class AquaFluidStorage extends AquaStorage<Fluid, FluidVariant, ConfigurableFluidStack>{
 
-    public AquaFluidStorage(List<ConfigurableStack<Fluid, FluidVariant>> storage) {
+    public AquaFluidStorage(List<ConfigurableFluidStack> storage) {
         super(storage, true);
     }
 }

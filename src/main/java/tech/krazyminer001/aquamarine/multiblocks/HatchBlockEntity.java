@@ -4,6 +4,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.blocks.FastBlockEntity;
+import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableFluidStack;
+import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
+
+import java.util.List;
 
 public abstract class HatchBlockEntity extends FastBlockEntity {
     public HatchBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -20,5 +24,17 @@ public abstract class HatchBlockEntity extends FastBlockEntity {
 
         tickTransfer();
         markDirty();
+    }
+
+    public void appendItemInputs(List<ConfigurableItemStack> list) {
+    }
+
+    public void appendItemOutputs(List<ConfigurableItemStack> list) {
+    }
+
+    public void appendFluidInputs(List<ConfigurableFluidStack> list) {
+    }
+
+    public void appendFluidOutputs(List<ConfigurableFluidStack> list) {
     }
 }

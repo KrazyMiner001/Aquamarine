@@ -11,12 +11,22 @@ public class ConfigurableFluidStack extends ConfigurableStack<Fluid, FluidVarian
         this.capacity = capacity;
     }
 
+    public ConfigurableFluidStack(long capacity) {
+        super();
+        this.capacity = capacity;
+    }
+
     public long getCapacity() {
         return capacity;
     }
 
     public void setCapacity(long capacity) {
         this.capacity = capacity;
+    }
+
+    @Override
+    protected FluidVariant getBlank() {
+        return FluidVariant.blank();
     }
 
     @Override

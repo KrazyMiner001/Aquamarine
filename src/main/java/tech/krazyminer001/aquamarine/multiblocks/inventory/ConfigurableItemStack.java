@@ -10,6 +10,15 @@ public class ConfigurableItemStack extends ConfigurableStack<Item, ItemVariant> 
         super(resource, amount);
     }
 
+    @Override
+    protected ItemVariant getBlank() {
+        return ItemVariant.blank();
+    }
+
+
+    public ConfigurableItemStack() {
+    }
+
     public long getCapacity() {
         return capacity;
     }
