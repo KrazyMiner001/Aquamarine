@@ -1,9 +1,6 @@
 package tech.krazyminer001.aquamarine.example;
 
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
@@ -38,7 +35,7 @@ public class ExampleHatchBlock extends BlockWithEntity {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 
-        ItemStack inserted = ((ExampleHatchBlockEntity) world.getBlockEntity(pos)).getInventory().getItemStorage().itemHandler.setStack(0, new ItemStack(Items.DIAMOND, 20), false);
+        ItemStack inserted = ((ExampleHatchBlockEntity) world.getBlockEntity(pos)).getInventory().getItemStorage().itemHandler.insertStack(0, new ItemStack(Items.DIAMOND, 20), false);
 
         return ActionResult.SUCCESS;
     }

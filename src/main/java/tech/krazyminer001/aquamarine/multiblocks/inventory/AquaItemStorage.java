@@ -24,7 +24,7 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
             return storage.get(slot).getResource().toStack(Ints.saturatedCast(storage.get(slot).getAmount()));
         }
 
-        public ItemStack setStack(int slot, ItemStack stack, boolean simulate) {
+        public ItemStack insertStack(int slot, ItemStack stack, boolean simulate) {
             if (stack.isEmpty()) {
                 return ItemStack.EMPTY;
             }
@@ -55,7 +55,16 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
             return stack;
         }
 
-        public ItemStack removeStack(int slot, int amount, boolean simulate) {
+        public ItemStack setStack(int slot, ItemStack stack) {
+            ConfigurableStack<Item, ItemVariant> stackItem = storage.get(slot);
+            ItemVariant resource = ItemVariant.of(stack);
+
+            stackItem.setResource(resource);
+            stackItem.setAmount(stack.getCount());
+            return stack;
+        }
+
+        public ItemStack extractStack(int slot, int amount, boolean simulate) {
             if (amount <= 0) return ItemStack.EMPTY;
 
             try (Transaction tx = Transaction.openOuter()) {
@@ -67,6 +76,19 @@ public class AquaItemStorage extends AquaStorage<Item, ItemVariant, Configurable
                     tx.commit();
                 }
                 return result == 0 ? ItemStack.EMPTY : resource.toStack((int) result);
+            }
+        }
+
+        public ItemStack removeStack(int slot) {
+            try (Transaction tx = Transaction.openOuter()) {
+                ItemVariant resource = storage.get(slot).getResource();
+                ConfigurableStack<Item, ItemVariant> stackItem = storage.get(slot);
+                ItemStack removedStack = stackItem.getResource().toStack((int) stackItem.getAmount());
+
+                stackItem.setResource(new ConfigurableItemStack().getBlank());
+                stackItem.setAmount(0);
+                tx.commit();
+                return removedStack;
             }
         }
     }
