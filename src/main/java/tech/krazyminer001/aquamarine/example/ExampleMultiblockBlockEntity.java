@@ -13,6 +13,7 @@ import tech.krazyminer001.aquamarine.Aquamarine;
 import tech.krazyminer001.aquamarine.blocks.FastBlockEntity;
 import tech.krazyminer001.aquamarine.multiblocks.*;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.AquaInventory;
+import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableFluidStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.MultiblockInventory;
 
@@ -30,11 +31,11 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
 
     private AquaInventory inventory = new AquaInventory(
             List.of(new ConfigurableItemStack()),
-            List.of()
+            List.of(new ConfigurableFluidStack(1000))
     );
 
     private static final ShapeTemplate template = new ShapeTemplate.Builder()
-            .add(0, 1,  0, SimpleMember.ofBlock(() -> Blocks.GLASS), new HatchFlags.Builder().with(HatchType.ITEM_INPUT).build())
+            .add(0, 1,  0, SimpleMember.ofBlock(() -> Blocks.GLASS), new HatchFlags.Builder().with(HatchType.FLUID_INPUT).build())
             .build();
 
     private ShapeMatcher matcher = null;
@@ -57,8 +58,8 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
         Aquamarine.LOGGER.info("Multiblock does{} match", matcher.isMatchSuccessful() ? "" : "n't");
 
         Aquamarine.LOGGER.info("Multiblock has {} hatches", hatches.size());
-        if (!multiblockInventory.getItemInputs().isEmpty())
-            Aquamarine.LOGGER.info("Multiblock has {} {}s", multiblockInventory.getItemInputs().getFirst().getAmount(), multiblockInventory.getItemInputs().getFirst().getResource().getItem());
+        if (!multiblockInventory.getFluidInputs().isEmpty())
+            Aquamarine.LOGGER.info("Multiblock has {} {}s", multiblockInventory.getFluidInputs().getFirst().getAmount(), multiblockInventory.getFluidInputs().getFirst().getResource().getFluid());
     }
 
     public final void link() {

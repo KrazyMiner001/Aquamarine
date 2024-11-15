@@ -14,17 +14,16 @@ import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.Aquamarine;
 import tech.krazyminer001.aquamarine.multiblocks.BEP;
 import tech.krazyminer001.aquamarine.multiblocks.HatchBlockEntity;
+import tech.krazyminer001.aquamarine.multiblocks.hatches.FluidHatch;
 import tech.krazyminer001.aquamarine.multiblocks.hatches.ItemHatch;
-import tech.krazyminer001.aquamarine.multiblocks.inventory.AquaInventory;
-import tech.krazyminer001.aquamarine.multiblocks.inventory.BlockEntityItemInventory;
-import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
+import tech.krazyminer001.aquamarine.multiblocks.inventory.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExampleHatchBlockEntity extends ItemHatch implements BlockEntityItemInventory {
+public class ExampleHatchBlockEntity extends FluidHatch implements BlockEntityFluidInventory {
     public ExampleHatchBlockEntity(BlockPos pos, BlockState state) {
-        super(new BEP(ExampleBlocks.HATCH_BLOCK_ENTITY, pos, state), true, List.of(new ConfigurableItemStack()));
+        super(new BEP(ExampleBlocks.HATCH_BLOCK_ENTITY, pos, state), true, List.of(new ConfigurableFluidStack(1000)));
     }
 
     @Override
@@ -35,10 +34,5 @@ public class ExampleHatchBlockEntity extends ItemHatch implements BlockEntityIte
     @Override
     public AquaInventory getAquaInventory() {
         return getInventory();
-    }
-
-    @Override
-    public boolean canPlayerUse(PlayerEntity player) {
-        return true;
     }
 }
