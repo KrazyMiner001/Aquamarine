@@ -15,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class ExampleHatchBlock extends BlockWithEntity {
     private static final MapCodec<ExampleHatchBlock> CODEC = createCodec(ExampleHatchBlock::new);
 
@@ -36,6 +38,7 @@ public class ExampleHatchBlock extends BlockWithEntity {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 
         ItemStack inserted = ((ExampleHatchBlockEntity) world.getBlockEntity(pos)).getInventory().getItemStorage().itemHandler.insertStack(0, new ItemStack(Items.DIAMOND, 20), false);
+        Objects.requireNonNull(world.getBlockEntity(pos)).markDirty();
 
         return ActionResult.SUCCESS;
     }
