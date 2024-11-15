@@ -6,7 +6,8 @@ import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 public class AquaStorage <T, K extends TransferVariant<T>, O extends ConfigurableStack<T, K>> implements Storage<K> {
     public final List<O> storage;

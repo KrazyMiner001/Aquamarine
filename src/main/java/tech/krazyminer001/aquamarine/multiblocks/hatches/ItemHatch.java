@@ -1,14 +1,11 @@
 package tech.krazyminer001.aquamarine.multiblocks.hatches;
 
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.multiblocks.BEP;
 import tech.krazyminer001.aquamarine.multiblocks.HatchBlockEntity;
 import tech.krazyminer001.aquamarine.multiblocks.HatchType;

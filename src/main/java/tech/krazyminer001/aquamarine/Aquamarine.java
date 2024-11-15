@@ -1,7 +1,6 @@
 package tech.krazyminer001.aquamarine;
 
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.krazyminer001.aquamarine.example.ExampleBlocks;

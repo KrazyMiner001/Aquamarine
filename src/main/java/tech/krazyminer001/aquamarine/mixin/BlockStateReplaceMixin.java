@@ -10,8 +10,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tech.krazyminer001.aquamarine.events.BlockStateReplacedCallback;
 
-import java.lang.annotation.Target;
-
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public class BlockStateReplaceMixin {
     @Inject(at = @At("TAIL"), method = "onStateReplaced")

@@ -1,13 +1,9 @@
 package tech.krazyminer001.aquamarine.multiblocks.hatches;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.multiblocks.BEP;
 import tech.krazyminer001.aquamarine.multiblocks.HatchBlockEntity;
 import tech.krazyminer001.aquamarine.multiblocks.HatchType;

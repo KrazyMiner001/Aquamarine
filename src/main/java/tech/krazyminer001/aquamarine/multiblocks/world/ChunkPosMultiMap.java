@@ -23,14 +23,14 @@
  */
 package tech.krazyminer001.aquamarine.multiblocks.world;
 
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 public class ChunkPosMultiMap<T> {
     private final Map<WorldAccess, HashMap<ChunkPos, Set<T>>> storage = new HashMap<>();
