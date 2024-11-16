@@ -6,6 +6,9 @@ import net.minecraft.block.BlockState;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+/**
+ * Class to describe components of a multiblock that are just blocks without hatch functionality.
+ */
 public interface SimpleMember {
     /**
      * Returns whether the simple member matches a given {@link BlockState}.
