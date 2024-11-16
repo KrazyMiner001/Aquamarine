@@ -32,13 +32,31 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * A map meant for {@link ChunkEventListeners} that maps a {@link WorldAccess} to a map that maps a {@link ChunkPos} to a set of {@link T}.
+ * @param <T> An object that a {@link ChunkPos} can have multiple associated with it.
+ */
 public class ChunkPosMultiMap<T> {
     private final Map<WorldAccess, HashMap<ChunkPos, Set<T>>> storage = new HashMap<>();
 
+    /**
+     * Adds a {@link T} to the map with a corresponding world and chunk position.
+     * Adds the world and chunk position to map if needed.
+     * @param world The {@link WorldAccess} for the world.
+     * @param chunkPos The {@link ChunkPos} the {@link T} is for.
+     * @param t The {@link T} object to be added.
+     */
     public final void add(WorldAccess world, ChunkPos chunkPos, T t) {
         storage.computeIfAbsent(world, w -> new HashMap<>()).computeIfAbsent(chunkPos, p -> new HashSet<>()).add(t);
     }
 
+    /**
+     * Removes a {@link T} to the map with a corresponding world and chunk position.
+     * Removes the world and chunk position if made empty after removal of the {@link T}.
+     * @param world The {@link WorldAccess} for the world.
+     * @param chunkPos The {@link ChunkPos} the {@link T} is for.
+     * @param t The {@link T} object to be added.
+     */
     public final void remove(WorldAccess world, ChunkPos chunkPos, T t) {
         Map<ChunkPos, Set<T>> chunkPosMap = storage.get(world);
         Set<T> tSet = chunkPosMap.get(chunkPos);
@@ -56,6 +74,12 @@ public class ChunkPosMultiMap<T> {
         }
     }
 
+    /**
+     * Gets a collection of all the {@link T} for a given world and chunk position.
+     * @param world The {@link WorldAccess} for the world.
+     * @param chunkPos The position of the chunk to be checked.
+     * @return A set of all {@link T} at the given world and chunk position.
+     */
     @Nullable
     public final Set<T> get(WorldAccess world, ChunkPos chunkPos) {
         Map<ChunkPos, Set<T>> chunkPosSetMap = storage.get(world);

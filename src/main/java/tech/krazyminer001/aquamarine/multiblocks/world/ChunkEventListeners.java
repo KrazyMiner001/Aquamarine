@@ -9,9 +9,16 @@ import tech.krazyminer001.aquamarine.events.BlockStateReplacedCallback;
 
 import java.util.Set;
 
+/**
+ * Manages all chunk listeners provided by Aquamarine.
+ */
 public class ChunkEventListeners {
     public static ChunkPosMultiMap<ChunkEventListener> listeners = new ChunkPosMultiMap<>();
 
+    /**
+     * Code to initialise the listeners.
+     * Creates events for server stopping, chunks being loaded, chunks being unloaded, and blocks being updated.
+     */
     public static void init() {
         ServerLifecycleEvents.SERVER_STOPPED.register(minecraftServer -> clearListeners());
 
