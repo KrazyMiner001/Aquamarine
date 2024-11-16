@@ -12,6 +12,9 @@ import tech.krazyminer001.aquamarine.multiblocks.world.ChunkEventListeners;
 
 import java.util.*;
 
+/**
+ * Class to detect if a multiblock is valid, and to give access to hatches within the multiblock structure.
+ */
 public class ShapeMatcher implements ChunkEventListener {
     private final BlockPos controllerPos;
     private final Direction controllerDirection;
@@ -19,7 +22,7 @@ public class ShapeMatcher implements ChunkEventListener {
     private final Map<BlockPos, HatchFlags> hatchFlags;
 
     /**
-     * Class to detect if a multiblock is valid, and to give access to hatches within the multiblock structure.
+     * Creates a {@link ShapeMatcher} based on a world, the position of the controller, the direction of the controller, and a template.
      * @param world The world the multiblock controller is in.
      * @param controllerPos The position of the multiblock controller.
      * @param controllerDirection The direction the controller is facing.
@@ -69,9 +72,6 @@ public class ShapeMatcher implements ChunkEventListener {
         return posMap;
     }
 
-    /**
-     * @return A set of all positions the multiblock covers.
-     */
     public Set<BlockPos> getPositions() {
         return simpleMembers.keySet();
     }
@@ -110,10 +110,6 @@ public class ShapeMatcher implements ChunkEventListener {
         return matchSuccessful && !needsRematch;
     }
 
-    /**
-     * Gets a list of all matched {@link HatchBlockEntity}s
-     * @return List of all matched {@link HatchBlockEntity}s
-     */
     public List<HatchBlockEntity> getMatchedHatches() {
         return Collections.unmodifiableList(matchedHatches);
     }

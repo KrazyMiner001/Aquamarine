@@ -9,16 +9,18 @@ import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack
 
 import java.util.List;
 
+/**
+ * A block entity that is used for creating hatches for multiblocks. Hatches are how multiblocks do IO.
+ */
 public abstract class HatchBlockEntity extends FastBlockEntity {
-    /**
-     * Block entity with that acts as a hatch for multiblocks.
-     */
+
     public HatchBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
     /**
-     * Gets the type of the hatch. Must be overridden by inheriting class to indicate what hatch type it is.
+     * Gets the type of the hatch.
+     * Must be overridden by inheriting class to indicate what hatch type it is.
      * @return Hatch type of the hatch.
      */
     public abstract HatchType getHatchType();

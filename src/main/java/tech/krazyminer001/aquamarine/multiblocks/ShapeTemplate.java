@@ -6,13 +6,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class describing the shape of a multiblock.
+ */
 public class ShapeTemplate {
     public final Map<BlockPos, SimpleMember> simpleMembers = new HashMap<>();
     public final Map<BlockPos, HatchFlags> hatchFlags = new HashMap<>();
 
-    /**
-     * Class describing the shape of a multiblock.
-     */
     private ShapeTemplate() {}
 
     public static class Builder {

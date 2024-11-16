@@ -3,12 +3,15 @@ package tech.krazyminer001.aquamarine.multiblocks;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Contains the types of hatches that may be accepted at a position.
+ */
 public class HatchFlags {
     private final Set<HatchType> flags;
     public static final HatchFlags EMPTY = new HatchFlags(Set.of());
 
     /**
-     * A collection of hatch types, indicating what hatches a multiblock member may have.
+     * Creates a new {@link HatchFlags} using a set of {@link HatchType}s
      * @param flags Set of hatch types that this flag allows.
      */
     public HatchFlags(Set<HatchType> flags) {
