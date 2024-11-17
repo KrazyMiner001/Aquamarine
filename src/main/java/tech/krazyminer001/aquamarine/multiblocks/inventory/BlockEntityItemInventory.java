@@ -3,6 +3,9 @@ package tech.krazyminer001.aquamarine.multiblocks.inventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 
+/**
+ * An implementation of {@link Inventory} for block entities with just items using {@link AquaInventory}.
+ */
 public interface BlockEntityItemInventory extends Inventory {
     AquaInventory getAquaInventory();
 

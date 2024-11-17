@@ -2,6 +2,9 @@ package tech.krazyminer001.aquamarine.multiblocks.inventory;
 
 import net.minecraft.util.Clearable;
 
+/**
+ * An interface based on {@link net.minecraft.inventory.Inventory}, implemented for fluids using an {@link AquaInventory}.
+ */
 public interface BlockEntityFluidInventory extends Clearable {
     AquaInventory getAquaInventory();
 

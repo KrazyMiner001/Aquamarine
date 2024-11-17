@@ -37,6 +37,8 @@ public class MultiblockInventory {
         for (HatchBlockEntity hatch : hatches) {
             consumer.accept(hatch, stacks);
         }
+
+        listener.listenAll(stacks, null);
     }
 
     private final ChangeListener listener = new ChangeListener() {

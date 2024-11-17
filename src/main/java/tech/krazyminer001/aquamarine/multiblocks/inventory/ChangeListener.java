@@ -26,18 +26,38 @@ package tech.krazyminer001.aquamarine.multiblocks.inventory;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class to listen for changes to {@link ConfigurableStack}s.
+ */
 public abstract class ChangeListener {
 
+    /**
+     * What the superclass must do when it detects a change.
+     */
     protected abstract void onChange();
 
+    /**
+     * Checks if an object is valid for this listener.
+     * @param token The object to check validity of.
+     * @return If the object is valid.
+     */
     protected abstract boolean isValid(Object token);
 
+    /**
+     * Adds listeners for a list of stacks.
+     * @param stacks The list of stacks to add listeners for.
+     * @param token The token the listeners must have.
+     */
     public void listenAll(List<? extends ConfigurableStack<?, ?>> stacks, Object token) {
         for (var stack : stacks) {
             stack.addListener(this, token);
         }
     }
 
+    /**
+     * Notifies a set of listeners about change.
+     * @param listeners A map of the listeners to notify and their tokens.
+     */
     public static void notify(Map<ChangeListener, Object> listeners) {
         for (var it = listeners.entrySet().iterator(); it.hasNext();) {
             var entry = it.next();

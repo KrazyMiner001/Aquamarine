@@ -3,6 +3,9 @@ package tech.krazyminer001.aquamarine.multiblocks.inventory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.fluid.Fluid;
 
+/**
+ * Implementation of {@link ConfigurableStack} for fluids.
+ */
 public class ConfigurableFluidStack extends ConfigurableStack<Fluid, FluidVariant> {
     private long capacity;
 

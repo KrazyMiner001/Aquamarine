@@ -3,6 +3,9 @@ package tech.krazyminer001.aquamarine.multiblocks.inventory;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.item.Item;
 
+/**
+ * An implementation of  {@link ConfigurableStack} for items.
+ */
 public class ConfigurableItemStack extends ConfigurableStack<Item, ItemVariant> {
     private long capacity = 64;
 

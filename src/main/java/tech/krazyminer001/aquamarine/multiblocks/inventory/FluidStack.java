@@ -14,6 +14,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.Optional;
 
+/**
+ * Fluid alternative to {@link net.minecraft.item.ItemStack}.
+ */
 public class FluidStack
 {
     public static final FluidStack EMPTY = new FluidStack(FluidVariant.blank(), 0);
@@ -75,10 +78,16 @@ public class FluidStack
         this.amount = amount;
     }
 
+    /**
+     * Creates nbt from the stack.
+     */
     public NbtElement toNbt(RegistryWrapper.WrapperLookup registries, NbtElement prefix) {
         return CODEC.encode(this, registries.getOps(NbtOps.INSTANCE), prefix).getOrThrow();
     }
 
+    /**
+     * Creates a stack from nbt.
+     */
     public static Optional<FluidStack> fromNbt(RegistryWrapper.WrapperLookup registries, NbtElement prefix) {
         return CODEC.parse(registries.getOps(NbtOps.INSTANCE), prefix).resultOrPartial();
     }
