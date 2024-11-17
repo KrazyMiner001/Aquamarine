@@ -13,6 +13,9 @@ import tech.krazyminer001.aquamarine.multiblocks.inventory.FluidStack;
 
 import java.util.List;
 
+/**
+ * {@link HatchBlockEntity} implementation for a fluid storing hatch.
+ */
 public class FluidHatch extends HatchBlockEntity {
     private final boolean input;
     private final AquaInventory inventory;

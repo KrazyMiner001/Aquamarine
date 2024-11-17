@@ -15,6 +15,9 @@ import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@link HatchBlockEntity} implementation for an item storing hatch.
+ */
 public class ItemHatch extends HatchBlockEntity {
     private final boolean input;
     private final AquaInventory inventory;
