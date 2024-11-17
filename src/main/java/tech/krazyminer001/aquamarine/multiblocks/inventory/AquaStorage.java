@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *  * A class for storing Objects.
+ *  A class for storing Objects.
  *  Mostly meant to allow for easier transport between machines.
- *  * @param <T> The type of the storage.
- *  * @param <K> The {@link TransferVariant} for the storage type.
- *  * @param <O> The {@link ConfigurableStack} for the storage type and {@link TransferVariant}
+ *  @param <T> The type of the storage.
+ *  @param <K> The {@link TransferVariant} for the storage type.
+ *  @param <O> The {@link ConfigurableStack} for the storage type and {@link TransferVariant}
  *  */
 public class AquaStorage <T, K extends TransferVariant<T>, O extends ConfigurableStack<T, K>> implements Storage<K> {
     public final List<O> storage;
