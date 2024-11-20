@@ -15,6 +15,7 @@
 	"license": "MIT",
 	"icon": "assets/aquamarine/icon.png",
 	"environment": "*",
+	"accessWidener": "aquamarine.accesswidener",
 	"entrypoints": {
 		"main": [
 			"tech.krazyminer001.aquamarine.Aquamarine"
