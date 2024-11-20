@@ -1,5 +1,9 @@
 package tech.krazyminer001.aquamarine.multiblocks;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,10 +14,58 @@ import java.util.Map;
  * Class describing the shape of a multiblock.
  */
 public class ShapeTemplate {
+    public static final PacketCodec<ByteBuf, ShapeTemplate> PACKET_CODEC = new PacketCodec<>() {
+
+        @Override
+        public void encode(ByteBuf buf, ShapeTemplate value) {
+            PacketCodecs.map(
+                    HashMap::new,
+                    BlockPos.PACKET_CODEC,
+                    SimpleMember.PACKET_CODEC
+            ).encode(buf, (HashMap<BlockPos, SimpleMember>) value.simpleMembers);
+
+            PacketCodecs.map(
+                    HashMap::new,
+                    BlockPos.PACKET_CODEC,
+                    HatchFlags.PACKET_CODEC
+            ).encode(buf, (HashMap<BlockPos, HatchFlags>) value.hatchFlags);
+        }
+
+        @Override
+        public ShapeTemplate decode(ByteBuf buf) {
+              HashMap<BlockPos, SimpleMember> simpleMembers = PacketCodecs.map(
+                    HashMap::new,
+                    BlockPos.PACKET_CODEC,
+                    SimpleMember.PACKET_CODEC
+              ).decode(buf);
+
+              HashMap<BlockPos, HatchFlags> hatchFlags = PacketCodecs.map(
+                      HashMap::new,
+                      BlockPos.PACKET_CODEC,
+                      HatchFlags.PACKET_CODEC
+              ).decode(buf);
+
+              return new ShapeTemplate(simpleMembers, hatchFlags);
+        }
+    };
+
     public final Map<BlockPos, SimpleMember> simpleMembers = new HashMap<>();
     public final Map<BlockPos, HatchFlags> hatchFlags = new HashMap<>();
 
     private ShapeTemplate() {}
+
+    private ShapeTemplate(Map<BlockPos, SimpleMember> simpleMembers, Map<BlockPos, HatchFlags> hatchFlags) {
+        this.simpleMembers.putAll(simpleMembers);
+        this.hatchFlags.putAll(hatchFlags);
+    }
+
+    public Map<BlockPos, SimpleMember> getSimpleMembers() {
+        return simpleMembers;
+    }
+
+    public Map<BlockPos, HatchFlags> getHatchFlags() {
+        return hatchFlags;
+    }
 
     public static class Builder {
         private final ShapeTemplate template;

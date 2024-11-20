@@ -1,12 +1,32 @@
 package tech.krazyminer001.aquamarine.multiblocks;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Contains the types of hatches that may be accepted at a position.
  */
-public class HatchFlags {
+public class HatchFlags extends HashSet<HatchType> {
+    public static final PacketCodec<ByteBuf, HatchFlags> PACKET_CODEC = new PacketCodec<>() {
+
+        @Override
+        public void encode(ByteBuf buf, HatchFlags value) {
+            PacketCodecs.collection(
+                    HashSet::newHashSet,
+                    HatchType.PACKET_CODEC
+            ).encode(buf, value);
+        }
+
+        @Override
+        public HatchFlags decode(ByteBuf buf) {
+            return null;
+        }
+    };
+
     private final Set<HatchType> flags;
     public static final HatchFlags EMPTY = new HatchFlags(Set.of());
 
