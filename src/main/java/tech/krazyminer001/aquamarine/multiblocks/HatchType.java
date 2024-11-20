@@ -9,8 +9,8 @@ import java.util.ServiceLoader;
 /**
  * Interface that deals with hatch types. To add extra hatch types create an enum that extends this class.
  */
-public interface HatchType {
-    PacketCodec<ByteBuf, HatchType> PACKET_CODEC = new PacketCodec<>() {
+public class HatchType {
+      public static final PacketCodec<ByteBuf, HatchType> PACKET_CODEC = new PacketCodec<>() {
         @Override
         public void encode(ByteBuf buf, HatchType value) {
             PacketCodecs.STRING.encode(buf, value.toString());
@@ -18,26 +18,26 @@ public interface HatchType {
 
         @Override
         public HatchType decode(ByteBuf buf) {
-            return HatchType.DefaultHatchTypes.valueOf(PacketCodecs.STRING.decode(buf)); //Todo: make extendable
+            return new HatchType(PacketCodecs.STRING.decode(buf));
         }
     };
 
-    HatchType ITEM_INPUT = DefaultHatchTypes.ITEM_INPUT;
-    HatchType ITEM_OUTPUT = DefaultHatchTypes.ITEM_OUTPUT;
-    HatchType FLUID_INPUT = DefaultHatchTypes.FLUID_INPUT;
-    HatchType FLUID_OUTPUT = DefaultHatchTypes.FLUID_OUTPUT;
-    HatchType ENERGY_INPUT = DefaultHatchTypes.ENERGY_INPUT;
-    HatchType ENERGY_OUTPUT = DefaultHatchTypes.ENERGY_OUTPUT;
+    private final String name;
 
-    /**
-     * The hatch types provided by aquamarine by default.
-     */
-    enum DefaultHatchTypes implements HatchType {
-        ITEM_INPUT,
-        ITEM_OUTPUT,
-        FLUID_INPUT,
-        FLUID_OUTPUT,
-        ENERGY_INPUT,
-        ENERGY_OUTPUT;
+    protected HatchType(String name) {
+        this.name = name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof HatchType)) {return false;}
+        return name.equals(((HatchType) obj).name);
+    }
+
+    public static final HatchType ITEM_INPUT = new HatchType("ITEM_INPUT");
+    public static final HatchType ITEM_OUTPUT = new HatchType("ITEM_OUTPUT");
+    public static final HatchType FLUID_INPUT = new HatchType("FLUID_INPUT");
+    public static final HatchType FLUID_OUTPUT = new HatchType("FLUID_OUTPUT");
+    public static final HatchType ENERGY_INPUT = new HatchType("ENERGY_INPUT");
+    public static final HatchType ENERGY_OUTPUT = new HatchType("ENERGY_OUTPUT");
 }
