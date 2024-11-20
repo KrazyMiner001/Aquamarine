@@ -34,24 +34,6 @@ public class AquamarineClient implements ClientModInitializer {
 			MultiblockRenderer.clearMultiblock();
 		});
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, environment) -> {
-			dispatcher.register(literal("testMultiblockRender")
-					.then(argument("pos", BlockPosArgumentType.blockPos())
-							.executes(context -> {
-								BlockPos pos = BlockPosArgumentType.getBlockPos(context, "pos");
-								ShapeTemplate template = new ShapeTemplate.Builder()
-										.add(0, 1, 0, SimpleMember.ofBlock(() -> Blocks.END_ROD))
-										.add(1, 1, 0, SimpleMember.ofBlock(() -> Blocks.REDSTONE_BLOCK))
-										.add(0, 2, 0, SimpleMember.ofBlock(() -> Blocks.AIR))
-										.add(1, 2, 0, SimpleMember.ofBlock(() -> Blocks.CHAIN))
-										.build();
-								MultiblockRenderer.setMultiblock(template, pos, Direction.EAST);
-
-								return 1;
-							})
-			));
-		});
-
 		AquamarineS2CPacketReceiver.registerS2CPacketReceivers();
 	}
 }

@@ -56,29 +56,6 @@ public class Aquamarine implements ModInitializer {
 		ChunkEventListeners.init();
 
 		ExampleBlocks.init();
-
-		CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
-			commandDispatcher.register(literal("testSendMultiblockRender")
-					.then(argument("pos", BlockPosArgumentType.blockPos())
-							.then(argument("player", EntityArgumentType.player())
-									.executes((context -> {
-										final BlockPos pos = BlockPosArgumentType.getBlockPos(context, "pos");
-										final ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-										ShapeTemplate template = new ShapeTemplate.Builder()
-												.add(0, 1, 0, SimpleMember.ofBlock(() -> Blocks.END_ROD))
-												.add(1, 1, 0, SimpleMember.ofBlock(() -> Blocks.REDSTONE_BLOCK))
-												.add(0, 2, 0, SimpleMember.ofBlock(() -> Blocks.AIR))
-												.add(1, 2, 0, SimpleMember.ofBlock(() -> Blocks.CHAIN))
-												.build();
-										AquamarineS2CPacketSender.sendSetMultiblockRendererMultiblock(
-												template,
-												pos,
-												Direction.EAST,
-                                                player
-                                        );
-										return 1;
-									})))));
-		});
 	}
 
 	static {
