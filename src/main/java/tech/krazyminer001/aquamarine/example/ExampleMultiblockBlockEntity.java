@@ -16,7 +16,7 @@ import tech.krazyminer001.aquamarine.multiblocks.inventory.MultiblockInventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExampleMultiblockBlockEntity extends FastBlockEntity {
+public class ExampleMultiblockBlockEntity extends MultiblockBlockEntity {
     private final List<HatchBlockEntity> hatches = new ArrayList<>();
     private final MultiblockInventory multiblockInventory = new MultiblockInventory();
 
@@ -35,12 +35,18 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
 
     private ShapeMatcher matcher = null;
 
-    public static void tick(@NotNull World world, BlockPos pos, BlockState state, ExampleMultiblockBlockEntity entity) {
-        if (world.isClient()) return;
-        entity.tick();
+    @Override
+    public ShapeTemplate getShapeTemplate() {
+        return template;
     }
 
-    private void tick() {
+    @Override
+    public MultiblockInventory getMultiblockInventory() {
+        return multiblockInventory;
+    }
+
+    @Override
+    protected void tick() {
         assert world != null;
         if (world.isClient()) return;
         link();
@@ -50,9 +56,9 @@ public class ExampleMultiblockBlockEntity extends FastBlockEntity {
             hatches.addAll(matcher.getMatchedHatches());
         }
 
-        Aquamarine.LOGGER.info("Multiblock does{} match", matcher.isMatchSuccessful() ? "" : "n't");
+        //Aquamarine.LOGGER.info("Multiblock does{} match", matcher.isMatchSuccessful() ? "" : "n't");
 
-        Aquamarine.LOGGER.info("Multiblock has {} hatches", hatches.size());
+        //Aquamarine.LOGGER.info("Multiblock has {} hatches", hatches.size());
         if (!multiblockInventory.getFluidInputs().isEmpty())
             Aquamarine.LOGGER.info("Multiblock has {} {}s", multiblockInventory.getFluidInputs().getFirst().getAmount(), multiblockInventory.getFluidInputs().getFirst().getResource().getFluid());
     }

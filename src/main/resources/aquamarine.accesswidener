@@ -1,3 +1,4 @@
 accessWidener v2 named
 accessible field net/minecraft/client/render/VertexConsumerProvider$Immediate allocator Lnet/minecraft/client/util/BufferAllocator;
 accessible field net/minecraft/client/render/VertexConsumerProvider$Immediate layerBuffers Ljava/util/SequencedMap;
+accessible method net/minecraft/client/render/WorldRenderer drawBlockOutline (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Lnet/minecraft/entity/Entity;DDDLnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)V
