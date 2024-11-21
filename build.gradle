@@ -91,8 +91,8 @@ publishing {
 		maven {
 			name = "GitHubPackages"
 			url = "https://maven.pkg.github.com/krazyminer001/aquamarine"
-			credentials.username = System.getenv("GITHUB_ACTOR")
-			credentials.password = System.getenv("GITHUB_TOKEN")
+			credentials.username = GITHUB_ACTOR
+			credentials.password = GITHUB_TOKEN
 		}
 	}
 }
