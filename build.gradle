@@ -79,7 +79,9 @@ jar {
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
+			groupId = project.maven_group
 			artifactId = project.archives_base_name
+			version = project.mod_version
 			from components.java
 		}
 	}
@@ -89,10 +91,8 @@ publishing {
 		maven {
 			name = "GitHubPackages"
 			url = "https://maven.pkg.github.com/krazyminer001/aquamarine"
-			credentials {
-				username = System.getenv("GITHUB_ACTOR")
-				password = System.getenv("GITHUB_TOKEN")
-			}
+			credentials.username = System.getenv("GITHUB_ACTOR")
+			credentials.password = System.getenv("GITHUB_TOKEN")
 		}
 	}
 }
