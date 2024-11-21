@@ -78,7 +78,7 @@ jar {
 // configure the maven publication
 publishing {
 	publications {
-		create("mavenJava", MavenPublication) {
+		create(MavenPublication) {
 			groupId = project.maven_group
 			artifactId = project.archives_base_name
 			version = project.mod_version
