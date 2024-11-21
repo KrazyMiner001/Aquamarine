@@ -92,7 +92,7 @@ publishing {
 			name = "GitHubPackages"
 			url = "https://maven.pkg.github.com/krazyminer001/aquamarine"
 			credentials.username = GITHUB_ACTOR
-			credentials.password = GITHUB_TOKEN
+			credentials.password = System.getenv("GITHUB_TOKEN")
 		}
 	}
 }
