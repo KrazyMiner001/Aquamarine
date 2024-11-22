@@ -38,7 +38,7 @@ public abstract class MultiblockBlockEntity extends FastBlockEntity {
     public final void link() {
         assert world != null;
         if (matcher == null) {
-            matcher = new ShapeMatcher(world, pos, world.getBlockState(pos).get(Properties.FACING), getShapeTemplate());
+            matcher = new ShapeMatcher(world, pos, world.getBlockState(pos).get(Properties.HORIZONTAL_FACING), getShapeTemplate());
             matcher.registerListeners(world);
         }
 
