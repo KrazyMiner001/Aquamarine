@@ -29,7 +29,7 @@ public class HatchBlockOutlineRenderer {
                         if (playerItemBlockWithEntity.createBlockEntity(BlockPos.ORIGIN, playerItemBlockWithEntity.getDefaultState()) instanceof HatchBlockEntity hatchBlockEntity) {
                             HatchType hatchType = hatchBlockEntity.getHatchType();
                             ShapeTemplate template = multiblockBlockEntity.getShapeTemplate();
-                            ShapeMatcher matcher = new ShapeMatcher(world, pos, world.getBlockState(pos).get(Properties.FACING), template);
+                            ShapeMatcher matcher = new ShapeMatcher(world, pos, world.getBlockState(pos).get(Properties.HORIZONTAL_FACING), template);
                             matcher.rematch(world);
                             if (matcher.isMatchSuccessful())  {
                                 for (BlockPos matchedPos : matcher.getPositions()) {

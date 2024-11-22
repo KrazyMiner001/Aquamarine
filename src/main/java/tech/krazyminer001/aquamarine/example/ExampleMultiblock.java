@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ExampleMultiblock extends BlockWithEntity {
-    public static final EnumProperty<Direction> FACING = Properties.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final MapCodec<ExampleMultiblock> CODEC = createCodec(ExampleMultiblock::new);
 
     protected ExampleMultiblock(Settings settings) {
