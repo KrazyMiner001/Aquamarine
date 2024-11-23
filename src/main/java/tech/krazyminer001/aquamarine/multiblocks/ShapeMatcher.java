@@ -64,7 +64,7 @@ public class ShapeMatcher implements ChunkEventListener {
      * @return Map of world positions from template block positions with the same {@link V}
      * @param <V> An object that is used in the block position maps.
      */
-    private static <V> Map<BlockPos, V> toWorldPos(BlockPos controllerPos, Direction controllerDirection, Map<BlockPos, V> templateMap) {
+    public static <V> Map<BlockPos, V> toWorldPos(BlockPos controllerPos, Direction controllerDirection, Map<BlockPos, V> templateMap) {
         Map<BlockPos, V> posMap = new HashMap<>();
         for (Map.Entry<BlockPos, V> entry : templateMap.entrySet()) {
             posMap.put(toWorldPos(controllerPos, controllerDirection, entry.getKey()), entry.getValue());

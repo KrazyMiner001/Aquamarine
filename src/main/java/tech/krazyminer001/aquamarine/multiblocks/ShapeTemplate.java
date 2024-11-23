@@ -5,6 +5,8 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -57,6 +59,12 @@ public class ShapeTemplate {
     private ShapeTemplate(Map<BlockPos, SimpleMember> simpleMembers, Map<BlockPos, HatchFlags> hatchFlags) {
         this.simpleMembers.putAll(simpleMembers);
         this.hatchFlags.putAll(hatchFlags);
+    }
+
+    public void placeMultiblock(World world, BlockPos pos, Direction direction) {
+        if (world.isClient()) return;
+        Map<BlockPos, SimpleMember> members = ShapeMatcher.toWorldPos(pos, direction, simpleMembers);
+        members.forEach((key, value) -> world.setBlockState(key, value.getPreviewState()));
     }
 
     public Map<BlockPos, SimpleMember> getSimpleMembers() {

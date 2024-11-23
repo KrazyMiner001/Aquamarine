@@ -65,7 +65,7 @@ public class MultiblockRenderer {
     private static void renderMultiblock(World world, MatrixStack matrixStack) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
 
-        Map<BlockPos, SimpleMember> members = toWorldPos(controllerPos, controllerDirection, multiblockTemplate.simpleMembers);
+        Map<BlockPos, SimpleMember> members = ShapeMatcher.toWorldPos(controllerPos, controllerDirection, multiblockTemplate.simpleMembers);
 
         EntityRenderDispatcher entityRenderDispatcher = minecraftClient.getEntityRenderDispatcher();
         matrixStack.push();
@@ -168,14 +168,6 @@ public class MultiblockRenderer {
                 return colorResolver.getColor(plains, pos.getX(), pos.getZ());
             }
         };
-    }
-
-    private static <V> Map<BlockPos, V> toWorldPos(BlockPos controllerPos, Direction controllerDirection, Map<BlockPos, V> templateMap) {
-        Map<BlockPos, V> posMap = new HashMap<>();
-        for (Map.Entry<BlockPos, V> entry : templateMap.entrySet()) {
-            posMap.put(ShapeMatcher.toWorldPos(controllerPos, controllerDirection, entry.getKey()), entry.getValue());
-        }
-        return posMap;
     }
 
     private static GhostVertexConsumers remapVertexConsumers(VertexConsumerProvider.Immediate original) {
