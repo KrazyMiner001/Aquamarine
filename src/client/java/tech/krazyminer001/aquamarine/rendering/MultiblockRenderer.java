@@ -6,10 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.BufferAllocator;
@@ -25,6 +22,7 @@ import net.minecraft.world.biome.ColorResolver;
 import net.minecraft.world.chunk.light.LightingProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.opengl.GL11C;
 import tech.krazyminer001.aquamarine.Aquamarine;
 import tech.krazyminer001.aquamarine.multiblocks.ShapeMatcher;
 import tech.krazyminer001.aquamarine.multiblocks.ShapeTemplate;
@@ -209,14 +207,14 @@ public class MultiblockRenderer {
                     () -> {
                         original.startDrawing();
 
-                        RenderSystem.disableDepthTest();
-                        RenderSystem.enableBlend();
+                        new RenderPhase.DepthTest("!=", GL11C.GL_NOTEQUAL).startDrawing();
+                        RenderPhase.TRANSLUCENT_TRANSPARENCY.startDrawing();
                         RenderSystem.setShaderColor(20, 20, 20, 0.6f);
                     },
                     () -> {
                         RenderSystem.setShaderColor(1, 1, 1, 1);
-                        RenderSystem.disableBlend();
-                        RenderSystem.enableDepthTest();
+                        RenderPhase.ADDITIVE_TRANSPARENCY.endDrawing();
+                        new RenderPhase.DepthTest("!=", GL11C.GL_NOTEQUAL).endDrawing();
 
                         original.endDrawing();
                     }
