@@ -60,6 +60,16 @@ public class ShapeTemplate {
         this.hatchFlags.putAll(hatchFlags);
     }
 
+    public int getHeight() {
+        int maxY = Integer.MIN_VALUE;
+        for (BlockPos pos : simpleMembers.keySet()) {
+            if (pos.getY() > maxY) {
+                maxY = pos.getY();
+            }
+        }
+        return maxY;
+    }
+
     public void placeMultiblock(World world, BlockPos pos, Direction direction) {
         if (world.isClient()) return;
         Map<BlockPos, SimpleMember> members = ShapeMatcher.toWorldPos(pos, direction, simpleMembers);

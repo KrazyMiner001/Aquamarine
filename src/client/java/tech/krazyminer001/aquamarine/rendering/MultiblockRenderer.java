@@ -38,12 +38,26 @@ public class MultiblockRenderer {
     private static BlockPos controllerPos;
     private static Direction controllerDirection;
     private static GhostVertexConsumers vertexConsumers;
+    private static boolean layered = false;
+    private static int layer = 0;
 
     public static void setMultiblock(ShapeTemplate multiblock, BlockPos controllerPos, Direction controllerDirection) {
         multiblockTemplate = multiblock;
         MultiblockRenderer.controllerPos = controllerPos;
         MultiblockRenderer.controllerDirection = controllerDirection;
         hasMulitblock = multiblockTemplate != null;
+    }
+
+    public static void setMultiblock(ShapeTemplate multiblock, BlockPos controllerPos, Direction controllerDirection, boolean layered) {
+        setMultiblock(multiblock, controllerPos, controllerDirection);
+        MultiblockRenderer.layered = layered;
+        MultiblockRenderer.layer = 0;
+    }
+
+    public static void setMultiblock(ShapeTemplate multiblock, BlockPos controllerPos, Direction controllerDirection, boolean layered, int layer) {
+        setMultiblock(multiblock, controllerPos, controllerDirection);
+        MultiblockRenderer.layer = layer;
+        MultiblockRenderer.layered = layered;
     }
 
     public static void clearMultiblock() {
@@ -62,8 +76,6 @@ public class MultiblockRenderer {
     private static void renderMultiblock(World world, MatrixStack matrixStack) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
 
-        Map<BlockPos, SimpleMember> members = ShapeMatcher.toWorldPos(controllerPos, controllerDirection, multiblockTemplate.simpleMembers);
-
         EntityRenderDispatcher entityRenderDispatcher = minecraftClient.getEntityRenderDispatcher();
         matrixStack.push();
         matrixStack.translate(entityRenderDispatcher.camera.getPos().multiply(-1));
@@ -74,9 +86,33 @@ public class MultiblockRenderer {
 
         ShapeMatcher matcher = new ShapeMatcher(world, controllerPos, controllerDirection, multiblockTemplate);
 
-        for (BlockPos pos : members.keySet()) {
+        if (layered) {
+            boolean layerMatches;
+            do {
+                layerMatches = true;
+                for (BlockPos pos : multiblockTemplate.simpleMembers.keySet()) {
+                    if (pos.getY() != layer) {
+                        continue;
+                    }
+                    if (!matcher.matches(ShapeMatcher.toWorldPos(controllerPos, controllerDirection, pos), world, null)) {
+                        layerMatches = false;
+                        break;
+                    }
+                }
+                if (layerMatches && layer < multiblockTemplate.getHeight()) ++layer;
+            } while (layerMatches);
+        }
+
+        for (BlockPos templatePos : multiblockTemplate.simpleMembers.keySet()) {
+            BlockPos pos = ShapeMatcher.toWorldPos(controllerPos, controllerDirection, templatePos);
             if (!matcher.matches(pos, world, null)) {
-                renderBlock(world, members.get(pos).getPreviewState(), pos, matrixStack);
+                if (!layered) {
+                    renderBlock(world, multiblockTemplate.simpleMembers.get(templatePos).getPreviewState(), pos, matrixStack);
+                    continue;
+                }
+                if (templatePos.getY() == layer) {
+                    renderBlock(world, multiblockTemplate.simpleMembers.get(templatePos).getPreviewState(), pos, matrixStack);
+                }
             }
         }
 

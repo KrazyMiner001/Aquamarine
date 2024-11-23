@@ -33,10 +33,11 @@ public class ExampleMultiblock extends BlockWithEntity {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            AquamarineS2CPacketSender.sendSetMultiblockRendererMultiblock(
+            AquamarineS2CPacketSender.sendSetMultiblockRendererData(
                     ExampleMultiblockBlockEntity.template,
                     pos,
                     state.get(FACING),
+                    true,
                     serverPlayer
             );
             return ActionResult.SUCCESS;

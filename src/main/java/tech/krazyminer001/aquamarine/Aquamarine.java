@@ -38,6 +38,16 @@ public class Aquamarine implements ModInitializer {
 				AquamarineData.SetMultiblockRendererMultiblock.PACKET_CODEC
 		);
 
+		PayloadTypeRegistry.playS2C().register(
+				AquamarineData.SetMultiblockRendererMultiblockLayered.PACKET_ID,
+				AquamarineData.SetMultiblockRendererMultiblockLayered.PACKET_CODEC
+		);
+
+		PayloadTypeRegistry.playS2C().register(
+				AquamarineData.SetMultiblockRendererMultiblockLayeredOffset.PACKET_ID,
+				AquamarineData.SetMultiblockRendererMultiblockLayeredOffset.PACKET_CODEC
+		);
+
 		ChunkEventListeners.init();
 
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
