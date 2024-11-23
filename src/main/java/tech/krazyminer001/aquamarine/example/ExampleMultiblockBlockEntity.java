@@ -1,10 +1,10 @@
 package tech.krazyminer001.aquamarine.example;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.Aquamarine;
-import tech.krazyminer001.aquamarine.multiblocks.*;
+import tech.krazyminer001.aquamarine.multiblocks.MultiblockBlockEntity;
+import tech.krazyminer001.aquamarine.multiblocks.ShapeTemplate;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.AquaInventory;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableFluidStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;

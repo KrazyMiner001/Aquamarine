@@ -30,7 +30,6 @@ import tech.krazyminer001.aquamarine.multiblocks.ShapeMatcher;
 import tech.krazyminer001.aquamarine.multiblocks.ShapeTemplate;
 import tech.krazyminer001.aquamarine.multiblocks.SimpleMember;
 
-import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.SequencedMap;

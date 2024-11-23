@@ -4,8 +4,6 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 
-import java.util.ServiceLoader;
-
 /**
  * Interface that deals with hatch types. To add extra hatch types create an enum that extends this class.
  */

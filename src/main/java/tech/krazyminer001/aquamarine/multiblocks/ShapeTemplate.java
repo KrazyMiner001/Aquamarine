@@ -1,7 +1,6 @@
 package tech.krazyminer001.aquamarine.multiblocks;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.util.math.BlockPos;
