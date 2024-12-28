@@ -13,6 +13,8 @@ public class MultiblockInventory {
     private final List<ConfigurableItemStack> itemOutputs = new ArrayList<>();
     private final List<ConfigurableFluidStack> fluidInputs = new ArrayList<>();
     private final List<ConfigurableFluidStack> fluidOutputs = new ArrayList<>();
+    private final List<ConfigurableEnergyStack> energyInputs = new ArrayList<>();
+    private final List<ConfigurableEnergyStack> energyOutputs = new ArrayList<>();
 
     private int invHash = 0;
 
@@ -23,6 +25,8 @@ public class MultiblockInventory {
         recollectList(hatches, itemOutputs, HatchBlockEntity::appendItemOutputs);
         recollectList(hatches, fluidInputs, HatchBlockEntity::appendFluidInputs);
         recollectList(hatches, fluidOutputs, HatchBlockEntity::appendFluidOutputs);
+        recollectList(hatches, energyInputs, HatchBlockEntity::appendEnergyInputs);
+        recollectList(hatches, energyOutputs, HatchBlockEntity::appendEnergyOutputs);
     }
 
     private <T, Stack extends ConfigurableStack<T, ? extends TransferVariant<T>>> void recollectList(

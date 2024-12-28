@@ -44,6 +44,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	include modApi("teamreborn:energy:${project.tr_energy_version}")
 	
 }
 
@@ -85,12 +87,4 @@ publishing {
 	}
 
 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		maven {
-			name = "GitHubPackages"
-			url = "https://maven.pkg.github.com/krazyminer001/aquamarine"
-			credentials.username = System.getenv("GITHUB_ACTOR")
-			credentials.password = System.getenv("GITHUB_TOKEN")
-		}
-	}
 }

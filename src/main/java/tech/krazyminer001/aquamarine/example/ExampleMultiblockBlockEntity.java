@@ -7,10 +7,7 @@ import tech.krazyminer001.aquamarine.multiblocks.MultiblockBlockEntity;
 import tech.krazyminer001.aquamarine.multiblocks.ShapeTemplate;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.AquaInventory;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableFluidStack;
-import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.MultiblockInventory;
-
-import java.util.List;
 
 public class ExampleMultiblockBlockEntity extends MultiblockBlockEntity {
     private final MultiblockInventory multiblockInventory = new MultiblockInventory();
@@ -19,10 +16,9 @@ public class ExampleMultiblockBlockEntity extends MultiblockBlockEntity {
         super(ExampleBlocks.EXAMPLE_MULTIBLOCK_BLOCK_ENTITY_BLOCK_ENTITY_TYPE, pos, state);
     }
 
-    private final AquaInventory inventory = new AquaInventory(
-            List.of(new ConfigurableItemStack()),
-            List.of(new ConfigurableFluidStack(1000))
-    );
+    private final AquaInventory inventory = new AquaInventory.Builder()
+            .addFluidStack(new ConfigurableFluidStack(1000))
+            .build();
 
     public static final ShapeTemplate template;
 

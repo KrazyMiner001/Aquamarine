@@ -25,7 +25,7 @@ public class ItemHatch extends HatchBlockEntity {
     public ItemHatch(BEP bep, boolean input, List<ConfigurableItemStack> slots) {
         super(bep.blockEntityType(), bep.pos(), bep.state());
         this.input = input;
-        this.inventory = new AquaInventory(slots, List.of());
+        this.inventory = new AquaInventory.Builder().addItemStacks(slots).build();
     }
 
     @Override

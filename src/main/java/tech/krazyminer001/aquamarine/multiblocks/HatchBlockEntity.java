@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import tech.krazyminer001.aquamarine.blocks.FastBlockEntity;
+import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableEnergyStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableFluidStack;
 import tech.krazyminer001.aquamarine.multiblocks.inventory.ConfigurableItemStack;
 
@@ -65,4 +66,8 @@ public abstract class HatchBlockEntity extends FastBlockEntity {
      */
     public void appendFluidOutputs(List<ConfigurableFluidStack> list) {
     }
+
+    public void appendEnergyInputs(List<ConfigurableEnergyStack> list) {}
+
+    public void appendEnergyOutputs(List<ConfigurableEnergyStack> list) {}
 }

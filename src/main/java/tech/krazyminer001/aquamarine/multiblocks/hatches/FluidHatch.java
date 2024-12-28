@@ -23,7 +23,7 @@ public class FluidHatch extends HatchBlockEntity {
     public FluidHatch(BEP bep, boolean input, List<ConfigurableFluidStack> stacks) {
         super(bep.blockEntityType(), bep.pos(), bep.state());
         this.input = input;
-        inventory = new AquaInventory(List.of(), stacks);
+        inventory = new AquaInventory.Builder().addFluidStacks(stacks).build();
     }
 
     @Override
