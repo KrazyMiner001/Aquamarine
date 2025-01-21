@@ -38,10 +38,10 @@ public class HatchType {
         return id.equals(((HatchType) obj).id);
     }
 
-    public static final HatchType ITEM_INPUT = new HatchType(of("ITEM_INPUT"));
-    public static final HatchType ITEM_OUTPUT = new HatchType(of("ITEM_OUTPUT"));
-    public static final HatchType FLUID_INPUT = new HatchType(of("FLUID_INPUT"));
-    public static final HatchType FLUID_OUTPUT = new HatchType(of("FLUID_OUTPUT"));
-    public static final HatchType TR_ENERGY_INPUT = new HatchType(of("TR_ENERGY_INPUT"));
-    public static final HatchType TR_ENERGY_OUTPUT = new HatchType(of("TR_ENERGY_OUTPUT"));
+    public static final HatchType ITEM_INPUT = new HatchType(of("item_input"));
+    public static final HatchType ITEM_OUTPUT = new HatchType(of("item_output"));
+    public static final HatchType FLUID_INPUT = new HatchType(of("fluid_input"));
+    public static final HatchType FLUID_OUTPUT = new HatchType(of("fluid_output"));
+    public static final HatchType TR_ENERGY_INPUT = new HatchType(of("tr_energy_input"));
+    public static final HatchType TR_ENERGY_OUTPUT = new HatchType(of("tr_energy_output"));
 }
