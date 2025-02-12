@@ -50,7 +50,7 @@ public class Aquamarine implements ModInitializer {
 
 		ChunkEventListeners.init();
 
-        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+        if (/*FabricLoader.getInstance().isDevelopmentEnvironment()*/ true) {
             ExampleBlocks.init();
         }
     }
